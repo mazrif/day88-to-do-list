@@ -1,0 +1,74 @@
+{% include "header.html" %}
+
+<!-- add task -->
+<div class="container-fluid space" >
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <h5>Welcome, {{user.name}} </h5>
+                <form action="{{ url_for('user_page') }}" method="post">
+                    <input type="text" id="task" name="task" placeholder="Add a task" size="50">
+                    <span><input type="submit" value="Submit" class="btn btn-secondary"></span>
+                </form>
+        </div>
+    </div>
+
+</div>
+
+<!-- list tasks -->
+<div class="container-fluid" space>
+    <div class="col-lg-8 col-md-10 mx-auto">
+        {% with message = get_flashed_messages() %}
+        {% if message: %}
+        <p align="center">{{ message }}</p>
+        {% endif %}
+        {% endwith %}
+        <h5 class="max-auto list">Task List for {{ date }}</h5>
+        {% if user_tasks != [] %}
+        <form action="/checkbox" method="post">
+        {% for task in user_tasks %}
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+
+                    <ul style="list-style-type:none;">
+                        <li class="list-item">
+
+                        <input type="checkbox" id="id_{{ task.task_name }}"  name="checked_task" value="{{ task.id }}">
+                        <span class="date_created">{{ task.date_created }}</span>
+
+                        <label class="task-item" for="id_{{ task.task_name }}"> {{ task.task_name }} </label>
+                            <span>
+                            <a class="delete" href="{{ url_for('delete', task_id=task.id) }}">✘</a>
+                        </span>
+
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        {% endfor %}
+        <p>
+            <input type="submit" value="Update List" class="mx-auto btn btn-secondary" style="margin-top:10px;">
+        </p>
+
+        </form>
+
+    {% else %}
+<!--        <div class="row task-list">-->
+            <p>No tasks in the list yet</p>
+<!--        </div>-->
+    {% endif %}
+<a href="{{ url_for('completed_tasks') }}" class="btn btn-dark mx-auto" style="margin-top: 30px;">View Completed List</a>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% include "footer.html" %}

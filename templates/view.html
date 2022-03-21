@@ -1,0 +1,28 @@
+{% include "header.html" %}
+
+<div class="container-fluid space">
+    <h5 class="view-list">Tasks Completed </h5>
+    {% if tasks != None %}
+        {% for task in tasks %}
+              <div class="row">
+                  <div class="col-lg-8 col-md-10 mx-auto">
+                      <ul style="list-style-type:none;"> <!-- so that there is no dot next to list items-->
+                            <li>
+                                <span class="date_created">{{ task.date_created }}</span>
+                                <label class="task-item"> {{ task.task_name }} </label>
+                                <span> completed on {{ task.date_completed }}</span>
+                                <span>
+                                <a class="delete" href="{{ url_for('delete', task_id=task.id) }}">✘</a>
+                                </span>
+                            </li>
+                        </ul>
+                  </div>
+
+
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+
+{% include "footer.html" %}

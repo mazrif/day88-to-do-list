@@ -1,0 +1,71 @@
+{% include "header.html" %}
+
+
+<!-- add task -->
+<div class="container-fluid space" >
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+         <form action="/" method="post">
+        <input type="text" id="task" name="task" placeholder="Add a task" size="50%">
+        <span><input type="submit" value="Submit" class="btn btn-secondary"></span>
+    </form>
+    </div>
+
+</div>
+
+</div>
+
+<!-- list tasks -->
+<div class="container-fluid">
+<div class="col-lg-8 col-md-10 mx-auto">
+    {% with message = get_flashed_messages() %}
+    {% if message: %}
+    <p align="center">{{ message }}</p>
+    {% endif %}
+    {% endwith %}
+    <h5 class="max-auto list">Task List for {{ date }}</h5>
+    {% if tasks != [] %}
+
+        {% for task in tasks %}
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+
+                    <ul style="list-style-type:none;">
+                        <li>
+                        <form action="/" method="post" class="task-item">
+                            <input type="checkbox" name="checked_task">
+                            <span > {{ task }} </span>
+
+                        </form>
+                        </li>
+                    </ul>
+
+                </div>
+
+
+            </div>
+      {% endfor %}
+
+    {% else %}
+        <!-- <div class="col-lg-8 col-md-10 mx-auto"> -->
+            <p>No tasks in the list yet</p>
+        <!-- </div> -->
+    {% endif %}
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+{% include "footer.html" %}

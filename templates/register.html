@@ -1,0 +1,66 @@
+
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block content %}
+{% include "header.html" %}
+
+
+
+
+  <!-- Page Header
+
+  <header class="masthead" style="background-image: url({{ url_for('static', filename='images/blue_sky.jpg')}})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+-->
+
+  <div class="container-fluid space">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+      <h3>Register New User</h3>
+<!--       {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "dark"}) }}-->
+
+        <form action="{{ url_for('register') }}" method="post">
+          {{ form.csrf_token }}
+          <p>
+            {{ form.email.label }} <br> {{ form.email(size=30) }}
+          </p>
+          <p>
+            {{ form.password.label }} <br> {{ form.password(size=30) }}
+          </p>
+          <p>
+            {{ form.name.label }} <br> {{ form.name(size=30) }}
+          </p>
+          {{ form.submit }}
+        </form>
+
+<!--        <form action="/register" method="post">-->
+<!--        <label for="email">Email Address</label><br>-->
+<!--        <input type="email" id="email" name="email" size="30" ><br>-->
+<!--        <label for="password">Password</label><br>-->
+<!--        <input type="password" id="password" name="password" size="30"><br>-->
+<!--        <label for="username">Name</label><br>-->
+<!--        <input type="text" id="username" name="username" size="30"><br>-->
+<!--        <input type="submit" value="Submit">-->
+<!--        </form>-->
+
+      </div>
+    </div>
+  </div>
+
+
+{% include "footer.html" %}
+{% endblock %}
+

@@ -1,0 +1,59 @@
+body{
+font-size:1rem;
+text-align: center}
+
+.add-task{
+margin: 160px 320px 50px 320px;
+}
+
+.display-tasks{
+margin:50px;
+}
+
+
+.list{
+padding: 25px
+
+}
+
+/*
+.task-list{
+margin: 5px 320px;
+}
+*/
+
+.save-list{
+margin: 20px 320px;
+}
+
+.date_created{
+padding-left:5px;
+padding-right:5px;
+color:grey;
+}
+
+
+.task-item{
+padding-left: 2rem;
+
+text-align:left;
+}
+
+
+.delete{
+padding-left:16px;
+padding-right:5px;
+color: red;
+}
+
+.view-list{
+margin-bottom:30px;
+}
+
+.space{
+margin-top:150px;
+}
+
+.list-item{
+text-align: left;
+}

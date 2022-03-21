@@ -1,0 +1,44 @@
+
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+ {% block content %}
+{% include "header.html" %}
+
+  <!-- Page Header -->
+
+  <div class="container-fluid space">
+
+    <div class="row">
+
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {% with message = get_flashed_messages() %}
+      {% if message: %}
+      <p align="center">{{ message }}</p>
+      {% endif %}
+      {% endwith %}
+
+        <h3>Please log in</h3>
+
+        <form action="{{ url_for('login') }}" method="post">
+          {{ form.csrf_token }}
+          <p>
+            {{ form.email.label }} <br> {{ form.email(size=30) }}
+          </p>
+          <p>
+            {{ form.password.label }} <br> {{ form.password(size=30) }}
+          </p>
+          {{ form.submit }}
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+{% include "footer.html" %}
+ {% endblock %}
