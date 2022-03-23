@@ -13,7 +13,6 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from forms import RegisterForm, LoginForm
 import os
 
-
 app = Flask(__name__)
 Bootstrap(app)
 
@@ -30,6 +29,7 @@ login_manager.init_app(app)
 
 ##CONNECT TO DB
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///todolist.db')
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
