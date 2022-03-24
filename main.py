@@ -12,6 +12,12 @@ from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from forms import RegisterForm, LoginForm
 import os
+import re
+
+# uri = os.getenv("DATABASE_URL")  # or other relevant config var
+# if uri.startswith("postgres://"):
+#     uri = uri.replace("postgres://", "postgresql://", 1)
+# # rest of connection code using the connection string `uri`
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -29,6 +35,8 @@ login_manager.init_app(app)
 
 ##CONNECT TO DB
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///todolist.db')
+if app.config['SQLALCHEMY_DATABASE_URI'].startswith("postgres://"):
+     app.config['SQLALCHEMY_DATABASE_URI'] = app.config['SQLALCHEMY_DATABASE_URI'].replace("postgres://", "postgresql://", 1)
 app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
